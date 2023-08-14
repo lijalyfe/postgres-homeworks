@@ -25,6 +25,10 @@ ORDER BY p.units_in_stock;
 
 
 -- 3. Список компаний заказчиков (company_name из табл customers), не сделавших ни одного заказа
+SELECT c.company_name
+FROM customers AS c
+LEFT JOIN orders AS o ON c.customer_id = o.customer_id
+WHERE o.order_id IS NULL;
 
 
 -- 4. уникальные названия продуктов, которых заказано ровно 10 единиц (количество заказанных единиц см в колонке quantity табл order_details)
