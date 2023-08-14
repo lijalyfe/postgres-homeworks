@@ -1,5 +1,5 @@
 CREATE TABLE customers (
-  customer_id SERIAL PRIMARY KEY,
+  customer_id VARCHAR(50) PRIMARY KEY,
   company_name VARCHAR(50),
   contact_name VARCHAR(50)
 );
@@ -11,16 +11,14 @@ CREATE TABLE employees (
   last_name VARCHAR(50),
   title VARCHAR(50),
   birth_date DATE,
-  notes VARCHAR(50)
+  notes VARCHAR(500)
 );
 
 
 CREATE TABLE orders (
   order_id SERIAL PRIMARY KEY,
-  customer_id INTEGER REFERENCES customers(customer_id),
+  customer_id VARCHAR(50),
   employee_id INTEGER REFERENCES employees(employee_id),
   order_date DATE,
-  ship_sity TEXT
+  ship_sity VARCHAR(50)
 );
-
-

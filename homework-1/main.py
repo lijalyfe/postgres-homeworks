@@ -54,3 +54,11 @@ for _, row in orders_df.iterrows():
         sql.SQL(", ").join(sql.Placeholder() for _ in row)
     )
     cursor.execute(query, tuple(row))
+
+
+# Завершаем транзакцию
+connection.commit()
+
+# Закрываем курсор и соединение с базой данных
+cursor.close()
+connection.close()
