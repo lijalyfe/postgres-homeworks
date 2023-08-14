@@ -32,3 +32,25 @@ def create_insert_query(table_name, df):
         " VALUES ({})"
     )
     return q
+
+
+# Заполняем таблицу employees данными
+for _, row in employees_df.iterrows():
+    query = create_insert_query("employees", employees_df).format(
+        sql.SQL(", ").join(sql.Placeholder() for _ in row)
+    )
+    cursor.execute(query, tuple(row))
+
+# Заполняем таблицу customers данными
+for _, row in customers_df.iterrows():
+    query = create_insert_query("customers", customers_df).format(
+        sql.SQL(", ").join(sql.Placeholder() for _ in row)
+    )
+    cursor.execute(query, tuple(row))
+
+# Заполняем таблицу orders данными
+for _, row in orders_df.iterrows():
+    query = create_insert_query("orders", orders_df).format(
+        sql.SQL(", ").join(sql.Placeholder() for _ in row)
+    )
+    cursor.execute(query, tuple(row))
