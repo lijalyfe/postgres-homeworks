@@ -22,3 +22,13 @@ connection = psycopg2.connect(
     port="5432"
 )
 cursor = connection.cursor()
+
+
+# Вспомогательная функция для создания SQL-запроса на основе DataFrame
+def create_insert_query(table_name, df):
+    column_names = ", ".join(df.columns)
+    q = sql.SQL(
+        f"INSERT INTO {table_name} ({column_names})"
+        " VALUES ({})"
+    )
+    return q
